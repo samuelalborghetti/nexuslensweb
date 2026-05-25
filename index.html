@@ -2,9 +2,8 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Nexus Lens</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -13,21 +12,19 @@
         }
 
         :root {
-            --primary: #1a1a1a;
-            --secondary: #f5f5f5;
-            --accent: #0066cc;
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --text-muted: #666;
             --border: #e0e0e0;
-            --text-dark: #1a1a1a;
-            --text-light: #666;
+            --accent: #0066cc;
         }
 
         @media (prefers-color-scheme: dark) {
             :root {
-                --primary: #f5f5f5;
-                --secondary: #1a1a1a;
+                --bg: #0a0a0a;
+                --text: #f5f5f5;
+                --text-muted: #999;
                 --border: #333;
-                --text-dark: #f5f5f5;
-                --text-light: #999;
             }
         }
 
@@ -37,172 +34,174 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--secondary);
-            color: var(--text-dark);
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+            overflow-x: hidden;
         }
 
         header {
-            padding: 40px 0;
+            padding: 16px;
             border-bottom: 1px solid var(--border);
             position: sticky;
             top: 0;
-            background: var(--secondary);
+            background: var(--bg);
             z-index: 100;
         }
 
-        .header-content {
+        .header-wrapper {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: 600;
+            font-size: 18px;
+            font-weight: 700;
             letter-spacing: -0.5px;
         }
 
-        nav {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-size: 14px;
-            transition: color 0.2s;
-        }
-
-        nav a:hover {
-            color: var(--accent);
-        }
-
-        .lang-selector {
+        .lang-btn {
             background: none;
             border: 1px solid var(--border);
-            color: var(--text-dark);
-            padding: 8px 12px;
+            color: var(--text);
+            padding: 6px 10px;
             border-radius: 4px;
-            font-size: 13px;
+            font-size: 12px;
             cursor: pointer;
             transition: all 0.2s;
         }
 
-        .lang-selector:hover {
+        .lang-btn:active {
             border-color: var(--accent);
             color: var(--accent);
         }
 
-        @media (max-width: 768px) {
-            nav {
-                gap: 20px;
-            }
-            nav a {
-                font-size: 12px;
-            }
-        }
-
         .hero {
-            padding: 100px 0;
+            padding: 40px 16px;
             text-align: center;
         }
 
         .hero h1 {
-            font-size: clamp(32px, 8vw, 64px);
+            font-size: 28px;
             font-weight: 700;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
         }
 
-        .hero-subtitle {
-            font-size: 20px;
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto 60px;
+        .hero p {
+            font-size: 15px;
+            color: var(--text-muted);
             line-height: 1.5;
+            margin-bottom: 30px;
         }
 
-        .section {
-            padding: 80px 0;
+        section {
+            padding: 40px 16px;
             border-top: 1px solid var(--border);
         }
 
-        .section h2 {
-            font-size: clamp(28px, 6vw, 48px);
-            font-weight: 600;
-            margin-bottom: 60px;
+        section h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 24px;
             text-align: center;
             letter-spacing: -0.5px;
         }
 
-        .grid-2 {
+        section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 28px 0 14px;
+        }
+
+        section h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 16px 0 8px;
+        }
+
+        section p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            font-size: 13px;
+        }
+
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        @media (min-width: 640px) {
+            .grid-2 {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
         }
 
         .card {
-            padding: 40px;
+            padding: 20px;
             border: 1px solid var(--border);
             border-radius: 8px;
-            background: var(--primary);
-            color: var(--secondary);
+            background: var(--bg);
         }
 
         .card h3 {
-            font-size: 18px;
-            margin-bottom: 15px;
-            font-weight: 600;
+            font-size: 15px;
+            margin: 0 0 12px;
         }
 
         .card p {
+            font-size: 13px;
+            margin: 0;
+        }
+
+        .highlight-box {
+            background: rgba(0, 102, 204, 0.05);
+            border-left: 3px solid var(--accent);
+            padding: 16px;
+            border-radius: 4px;
+            margin: 24px 0;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .highlight-box {
+                background: rgba(0, 102, 204, 0.08);
+            }
+        }
+
+        .highlight-box h5 {
             font-size: 14px;
-            line-height: 1.7;
-            color: var(--text-light);
-        }
-
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-        }
-
-        .tech-item {
-            padding: 0;
-        }
-
-        .tech-item h4 {
-            font-size: 18px;
             font-weight: 600;
-            margin-bottom: 15px;
+            margin: 0 0 8px;
         }
 
-        .tech-item p {
-            font-size: 14px;
-            color: var(--text-light);
-            line-height: 1.7;
-            margin-bottom: 20px;
+        .highlight-box p {
+            font-size: 13px;
+            margin: 0;
         }
 
         .formula {
             background: rgba(0, 102, 204, 0.05);
-            padding: 16px;
+            padding: 12px;
             border-left: 2px solid var(--accent);
             font-family: 'Courier New', monospace;
-            font-size: 12px;
+            font-size: 11px;
             overflow-x: auto;
             border-radius: 4px;
             color: var(--accent);
+            margin: 12px 0;
         }
 
         @media (prefers-color-scheme: dark) {
@@ -211,42 +210,48 @@
             }
         }
 
-        .stats {
+        .stat-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin: 60px 0;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        @media (min-width: 640px) {
+            .stat-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
 
         .stat {
             text-align: center;
-            padding: 30px;
+            padding: 16px 12px;
             border: 1px solid var(--border);
-            border-radius: 8px;
+            border-radius: 6px;
         }
 
         .stat-number {
-            font-size: 42px;
+            font-size: 20px;
             font-weight: 700;
             color: var(--accent);
-            margin-bottom: 10px;
+            margin-bottom: 6px;
         }
 
         .stat-label {
-            font-size: 13px;
-            color: var(--text-light);
+            font-size: 11px;
+            color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
 
         .timeline {
             position: relative;
-            padding: 40px 0;
+            padding: 16px 0;
         }
 
         .timeline-item {
-            padding-left: 40px;
-            margin-bottom: 40px;
+            padding-left: 28px;
+            margin-bottom: 28px;
             position: relative;
         }
 
@@ -254,21 +259,21 @@
             content: '';
             position: absolute;
             left: 0;
-            top: 6px;
-            width: 12px;
-            height: 12px;
+            top: 4px;
+            width: 10px;
+            height: 10px;
             background: var(--accent);
             border-radius: 50%;
-            border: 2px solid var(--secondary);
+            border: 2px solid var(--bg);
         }
 
         .timeline-item::after {
             content: '';
             position: absolute;
-            left: 4px;
-            top: 18px;
+            left: 3px;
+            top: 14px;
             width: 2px;
-            height: calc(100% + 22px);
+            height: calc(100% + 18px);
             background: var(--border);
         }
 
@@ -277,497 +282,289 @@
         }
 
         .timeline-item h4 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 10px;
+            font-size: 14px;
+            margin: 0 0 6px;
         }
 
         .timeline-item p {
-            font-size: 14px;
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        .business-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .business-card {
-            padding: 30px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-        }
-
-        .business-card h4 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .business-card p {
             font-size: 13px;
-            color: var(--text-light);
-            line-height: 1.6;
+            margin: 0;
         }
 
-        .highlight {
-            display: flex;
-            gap: 20px;
-            padding: 30px;
-            background: rgba(0, 102, 204, 0.05);
-            border-left: 3px solid var(--accent);
-            border-radius: 4px;
-            margin: 30px 0;
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin: 24px 0;
         }
 
-        @media (prefers-color-scheme: dark) {
-            .highlight {
-                background: rgba(0, 102, 204, 0.1);
+        @media (min-width: 640px) {
+            .roadmap-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
-        .highlight-text {
-            flex: 1;
+        .roadmap-card {
+            text-align: center;
+            padding: 16px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
         }
 
-        .highlight-text h5 {
-            font-size: 16px;
+        .roadmap-year {
+            font-size: 14px;
             font-weight: 600;
             margin-bottom: 8px;
         }
 
-        .highlight-text p {
-            font-size: 14px;
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        .roadmap {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
-        }
-
-        .roadmap-card {
-            padding: 25px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .roadmap-year {
+        .roadmap-value {
             font-size: 20px;
             font-weight: 700;
             color: var(--accent);
-            margin-bottom: 10px;
-        }
-
-        .roadmap-value {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .roadmap-desc {
-            font-size: 13px;
-            color: var(--text-light);
+            font-size: 11px;
+            color: var(--text-muted);
         }
 
-        footer {
-            padding: 40px 0;
-            border-top: 1px solid var(--border);
-            text-align: center;
-            color: var(--text-light);
-            font-size: 12px;
-            margin-top: 80px;
-        }
-
-        .divider {
-            height: 1px;
-            background: var(--border);
-            margin: 60px 0;
-        }
-
-        .mission-vision {
+        .mv-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            margin-top: 40px;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        @media (min-width: 640px) {
+            .mv-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         .mv-card {
-            padding: 40px;
+            padding: 20px;
             border: 1px solid var(--border);
             border-radius: 8px;
         }
 
         .mv-card h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 15px;
+            font-size: 15px;
+            margin: 0 0 12px;
         }
 
         .mv-card p {
-            font-size: 14px;
-            color: var(--text-light);
-            line-height: 1.7;
+            font-size: 13px;
+            margin: 0;
         }
 
-        @media (max-width: 768px) {
-            .hero {
-                padding: 60px 0;
+        footer {
+            padding: 24px 16px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 11px;
+            margin-top: 40px;
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 40px 0;
+        }
+
+        @media (min-width: 768px) {
+            section {
+                padding: 60px 32px;
             }
 
-            .hero-subtitle {
-                font-size: 16px;
-            }
-
-            .section {
-                padding: 60px 0;
-            }
-
-            .section h2 {
+            section h2 {
+                font-size: 32px;
                 margin-bottom: 40px;
             }
 
-            .grid-2,
-            .tech-grid,
-            .stats,
-            .business-grid,
-            .mission-vision,
-            .roadmap {
-                gap: 20px;
+            .hero {
+                padding: 80px 32px;
             }
 
-            .card,
-            .stat,
-            .business-card,
-            .mv-card {
-                padding: 25px;
+            .hero h1 {
+                font-size: 48px;
+                margin-bottom: 24px;
             }
 
-            nav {
-                gap: 15px;
+            .hero p {
+                font-size: 16px;
+                max-width: 600px;
+                margin: 0 auto 40px;
             }
 
-            nav a {
-                font-size: 11px;
+            .card {
+                padding: 28px;
+            }
+
+            header {
+                padding: 24px 32px;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">Nexus Lens</div>
-                <nav>
-                    <a href="#problema" data-it="Il problema" data-en="The problem">Il problema</a>
-                    <a href="#tecnologia" data-it="Tecnologia" data-en="Technology">Tecnologia</a>
-                    <a href="#business" data-it="Business" data-en="Business">Business</a>
-                    <a href="#roadmap" data-it="Roadmap" data-en="Roadmap">Roadmap</a>
-                    <select class="lang-selector" id="langSelector">
-                        <option value="it">IT</option>
-                        <option value="en">EN</option>
-                    </select>
-                </nav>
-            </div>
+        <div class="header-wrapper">
+            <div class="logo">Nexus Lens</div>
+            <select class="lang-btn" id="langSelector">
+                <option value="it">IT</option>
+                <option value="en">EN</option>
+            </select>
         </div>
     </header>
 
     <main>
-        <div class="container">
-            <section class="hero">
-                <h1>Dai occhi alla tecnologia</h1>
-                <p class="hero-subtitle">Nexus Lens è il cognitive middleware che rende i computer consapevoli dell'utente. Adattamento biologico in tempo reale.</p>
-            </section>
+        <section class="hero">
+            <h1 data-it="Dai occhi alla tecnologia" data-en="Give eyes to technology">Dai occhi alla tecnologia</h1>
+            <p data-it="Nexus Lens è il cognitive middleware che rende i computer consapevoli dell'utente. Adattamento biologico in tempo reale." data-en="Nexus Lens is the cognitive middleware that makes computers aware of the user. Real-time biological adaptation.">Nexus Lens è il cognitive middleware che rende i computer consapevoli dell'utente. Adattamento biologico in tempo reale.</p>
+        </section>
 
-            <section class="section" id="problema">
-                <h2>Il problema reale</h2>
-                <div class="grid-2">
-                    <div class="card">
-                        <h3>41% dei lavoratori</h3>
-                        <p>Soffrono di digital fatigue cronica. I computer sono potentissimi, ma completamente ciechi di fronte a chi li usa. Manca il collegamento cruciale tra uomo e macchina.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Burnout digitale</h3>
-                        <p>Ritmi insostenibili, schermi luminosi, notifiche invasive. La tecnologia esegue comandi senza mai chiedersi come sta chi le impartisce. Risultato: stress cronico e perdita di produttività.</p>
-                    </div>
+        <section id="problema">
+            <h2 data-it="Il problema reale" data-en="The real problem">Il problema reale</h2>
+            <div class="grid grid-2">
+                <div class="card">
+                    <h3 data-it="41% dei lavoratori" data-en="41% of workers">41% dei lavoratori</h3>
+                    <p data-it="Soffrono di digital fatigue cronica. I computer sono potentissimi, ma completamente ciechi di fronte a chi li usa. Manca il collegamento cruciale tra uomo e macchina." data-en="Suffer from chronic digital fatigue. Computers are incredibly powerful, but completely blind to who uses them. The crucial link between man and machine is missing.">Soffrono di digital fatigue cronica. I computer sono potentissimi, ma completamente ciechi di fronte a chi li usa. Manca il collegamento cruciale tra uomo e macchina.</p>
                 </div>
-
-                <h3 style="margin: 60px 0 30px; font-size: 20px;">La soluzione: Cognitive Middleware</h3>
-                <div class="highlight">
-                    <div class="highlight-text">
-                        <h5>Un sistema nervoso digitale</h5>
-                        <p>Nexus Lens agisce come interfaccia biologica tra l'utente e la macchina. Legge i segnali vitali in tempo reale (frequenza cardiaca, stress da tastiera, affaticamento oculare) e adatta automaticamente luminosità, suoni e notifiche. Non più il computer che sfida l'uomo, ma il computer che lo protegge.</p>
-                    </div>
+                <div class="card">
+                    <h3 data-it="Burnout digitale" data-en="Digital burnout">Burnout digitale</h3>
+                    <p data-it="Ritmi insostenibili, schermi luminosi, notifiche invasive. La tecnologia esegue comandi senza mai chiedersi come sta chi le impartisce. Risultato: stress cronico e perdita di produttività." data-en="Unsustainable pace, bright screens, invasive notifications. Technology executes commands without ever asking how the person giving them is doing. Result: chronic stress and lost productivity.">Ritmi insostenibili, schermi luminosi, notifiche invasive. La tecnologia esegue comandi senza mai chiedersi come sta chi le impartisce. Risultato: stress cronico e perdita di produttività.</p>
                 </div>
-            </section>
+            </div>
 
-            <section class="section" id="tecnologia">
-                <h2>Come funziona</h2>
-                <p style="text-align: center; color: var(--text-light); margin-bottom: 60px; font-size: 15px;">Tre canali biologici, zero hardware invasivo. Soltanto una webcam e algoritmi matematici.</p>
+            <h3 data-it="La soluzione: Cognitive Middleware" data-en="The solution: Cognitive Middleware">La soluzione: Cognitive Middleware</h3>
+            <div class="highlight-box">
+                <h5 data-it="Un sistema nervoso digitale" data-en="A digital nervous system">Un sistema nervoso digitale</h5>
+                <p data-it="Nexus Lens agisce come interfaccia biologica tra l'utente e la macchina. Legge i segnali vitali in tempo reale (frequenza cardiaca, stress da tastiera, affaticamento oculare) e adatta automaticamente luminosità, suoni e notifiche. Non più il computer che sfida l'uomo, ma il computer che lo protegge." data-en="Nexus Lens acts as a biological interface between the user and the machine. It reads vital signs in real time (heart rate, keyboard stress, eye fatigue) and automatically adjusts brightness, sounds and notifications. No longer the computer challenging the human, but the computer protecting it.">Nexus Lens agisce come interfaccia biologica tra l'utente e la macchina. Legge i segnali vitali in tempo reale (frequenza cardiaca, stress da tastiera, affaticamento oculare) e adatta automaticamente luminosità, suoni e notifiche. Non più il computer che sfida l'uomo, ma il computer che lo protegge.</p>
+            </div>
+        </section>
 
-                <div class="tech-grid">
-                    <div class="tech-item">
-                        <h4>❤️ Fotopletismografia (rPPG)</h4>
-                        <p>Catturiamo il battito cardiaco dalle micro-variazioni cromatiche della pelle. L'algoritmo scarta la luce ambientale e il rumore della camera per estrarre l'onda pulsatile pura. Frequenza di battito live via webcam.</p>
-                        <div class="formula">C_skin(t) = I(t) · (R_dc + R_ac(t)) + n(t)</div>
-                    </div>
+        <section id="tecnologia">
+            <h2 data-it="Come funziona" data-en="How it works">Come funziona</h2>
+            <p class="subtitle" data-it="Tre canali biologici, zero hardware invasivo. Soltanto una webcam e algoritmi matematici." data-en="Three biological channels, zero invasive hardware. Just a webcam and mathematical algorithms.">Tre canali biologici, zero hardware invasivo. Soltanto una webcam e algoritmi matematici.</p>
 
-                    <div class="tech-item">
-                        <h4>⌨️ Stress da digitazione</h4>
-                        <p>Misuriamo l'intensità e la velocità dei vostri tasti. Colpi violenti sulla tastiera e latenza rapida sommano un indice di panico. Rivela il momento in cui lo stress sale, prima che diventi visibile.</p>
-                        <div class="formula">S_digitazione = (∑[x(n) - μ]² · K) · (1 + 1/ΔT)</div>
-                    </div>
+            <h4 data-it="❤️ Fotopletismografia (rPPG)" data-en="❤️ Photoplethysmography (rPPG)">❤️ Fotopletismografia (rPPG)</h4>
+            <p data-it="Catturiamo il battito cardiaco dalle micro-variazioni cromatiche della pelle. L'algoritmo scarta la luce ambientale e il rumore della camera per estrarre l'onda pulsatile pura. Frequenza di battito live via webcam." data-en="We capture heart rate from micro-color variations in the skin. The algorithm discards ambient light and camera noise to extract the pure pulse wave. Live heart rate via webcam.">Catturiamo il battito cardiaco dalle micro-variazioni cromatiche della pelle. L'algoritmo scarta la luce ambientale e il rumore della camera per estrarre l'onda pulsatile pura. Frequenza di battito live via webcam.</p>
+            <div class="formula">C_skin(t) = I(t) · (R_dc + R_ac(t)) + n(t)</div>
 
-                    <div class="tech-item">
-                        <h4>👁️ Fatica oculare (EAR)</h4>
-                        <p>468 landmark facciali mappano l'apertura palpebrale. L'Eye Aspect Ratio calcola altezza vs larghezza dell'occhio. Microsleep e affaticamento rilevati in millisecondi. Allerta prima del collasso.</p>
-                        <div class="formula">EAR = (||p2-p6|| + ||p3-p5||) / (2·||p1-p4||)</div>
-                    </div>
+            <h4 data-it="⌨️ Stress da digitazione" data-en="⌨️ Typing stress">⌨️ Stress da digitazione</h4>
+            <p data-it="Misuriamo l'intensità e la velocità dei vostri tasti. Colpi violenti sulla tastiera e latenza rapida sommano un indice di panico. Rivela il momento in cui lo stress sale, prima che diventi visibile." data-en="We measure the intensity and speed of your keystrokes. Violent hits on the keyboard and rapid latency sum up a panic index. Reveals the moment stress rises, before it becomes visible.">Misuriamo l'intensità e la velocità dei vostri tasti. Colpi violenti sulla tastiera e latenza rapida sommano un indice di panico. Rivela il momento in cui lo stress sale, prima che diventi visibile.</p>
+            <div class="formula">S_digitazione = (∑[x(n) - μ]² · K) · (1 + 1/ΔT)</div>
+
+            <h4 data-it="👁️ Fatica oculare (EAR)" data-en="👁️ Eye fatigue (EAR)">👁️ Fatica oculare (EAR)</h4>
+            <p data-it="468 landmark facciali mappano l'apertura palpebrale. L'Eye Aspect Ratio calcola altezza vs larghezza dell'occhio. Microsleep e affaticamento rilevati in millisecondi. Allerta prima del collasso." data-en="468 facial landmarks map eyelid opening. The Eye Aspect Ratio calculates height vs width of the eye. Microsleep and fatigue detected in milliseconds. Alert before collapse.">468 landmark facciali mappano l'apertura palpebrale. L'Eye Aspect Ratio calcola altezza vs larghezza dell'occhio. Microsleep e affaticamento rilevati in millisecondi. Allerta prima del collasso.</p>
+            <div class="formula">EAR = (||p2-p6|| + ||p3-p5||) / (2·||p1-p4||)</div>
+
+            <div class="stat-grid">
+                <div class="stat">
+                    <div class="stat-number">0€</div>
+                    <div class="stat-label" data-it="Costo per unità" data-en="Cost per unit">Costo per unità</div>
                 </div>
-
-                <div class="stats">
-                    <div class="stat">
-                        <div class="stat-number">0€</div>
-                        <div class="stat-label">Costo per unità</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">95-99%</div>
-                        <div class="stat-label">Margine di profitto</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">3</div>
-                        <div class="stat-label">Canali di revenue</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">Zero</div>
-                        <div class="stat-label">Hardware invasivo</div>
-                    </div>
+                <div class="stat">
+                    <div class="stat-number">95-99%</div>
+                    <div class="stat-label" data-it="Margine di profitto" data-en="Profit margin">Margine di profitto</div>
                 </div>
-            </section>
-
-            <section class="section" id="business">
-                <h2>Business model</h2>
-                <p style="text-align: center; color: var(--text-light); margin-bottom: 60px; font-size: 15px;">Tre canali di crescita, uno per ogni segmento di mercato.</p>
-
-                <div class="business-grid">
-                    <div class="business-card">
-                        <h4>🎮 Consumer (Freemium)</h4>
-                        <p>30 giorni gratis per gamers e freelancers. Obiettivo: conversione massiccia da milioni di utenti. Accesso facile, trial zero attrito.</p>
-                    </div>
-
-                    <div class="business-card">
-                        <h4>🏢 Enterprise (SaaS)</h4>
-                        <p>Pilot 30 giorni per dimostrare ROI diretto: riduzione malattie, boost produttività. Managers vedono i numeri. Poi scale-up aziendale.</p>
-                    </div>
-
-                    <div class="business-card">
-                        <h4>🔌 OEM Licensing</h4>
-                        <p>Pre-installato su nuovi PC MSI, ASUS. Attivazione istantanea. Distribuzione globale automatica. Crescita esponenziale dal day one.</p>
-                    </div>
+                <div class="stat">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label" data-it="Canali di revenue" data-en="Revenue channels">Canali di revenue</div>
                 </div>
-
-                <div class="timeline" style="margin-top: 60px;">
-                    <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 40px;">Fase di implementazione</h3>
-                    <div class="timeline-item">
-                        <h4>Onboarding strategico</h4>
-                        <p>Tutti e tre i canali iniziano con periodi di prova gratuiti (30 giorni). Zero barriere all'ingresso, massima conversione. L'utente sperimenta il valore prima di pagare.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h4>Validazione del mercato</h4>
-                        <p>Raccogliamo dati di utilizzo reale. Quali feature converte? Quale segmento resta? Dove è il valore percepito? Iterazione rapida basata su feedback.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h4>Scale-up differenziata</h4>
-                        <p>Consumer cresce per viral loop e word-of-mouth. Enterprise per case study e ROI. OEM per partnership con giganti hardware. Tre strategie parallele, uno prodotto.</p>
-                    </div>
+                <div class="stat">
+                    <div class="stat-number">Zero</div>
+                    <div class="stat-label" data-it="Hardware invasivo" data-en="Invasive hardware">Hardware invasivo</div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <div class="divider"></div>
+        <section id="business">
+            <h2 data-it="Business model" data-en="Business model">Business model</h2>
+            <p class="subtitle" data-it="Tre canali di crescita, uno per ogni segmento di mercato." data-en="Three growth channels, one for each market segment.">Tre canali di crescita, uno per ogni segmento di mercato.</p>
 
-            <section class="section" id="roadmap">
-                <h2>Roadmap finanziaria</h2>
-                <p style="text-align: center; color: var(--text-light); margin-bottom: 40px; font-size: 15px;">Puro software con margini massimali. Crescita esponenziale da Day 1.</p>
-
-                <div class="roadmap">
-                    <div class="roadmap-card">
-                        <div class="roadmap-year">Year 1</div>
-                        <div class="roadmap-value">€24.500</div>
-                        <div class="roadmap-desc">Validation in market</div>
-                    </div>
-                    <div class="roadmap-card">
-                        <div class="roadmap-year">Year 2</div>
-                        <div class="roadmap-value">€196.000</div>
-                        <div class="roadmap-desc">4.000 units sold</div>
-                    </div>
-                    <div class="roadmap-card">
-                        <div class="roadmap-year">Year 3</div>
-                        <div class="roadmap-value">€980.000+</div>
-                        <div class="roadmap-desc">20.000 units, pure profit</div>
-                    </div>
+            <div class="grid grid-2">
+                <div class="card">
+                    <h4 data-it="🎮 Consumer (Freemium)" data-en="🎮 Consumer (Freemium)">🎮 Consumer (Freemium)</h4>
+                    <p data-it="30 giorni gratis per gamers e freelancers. Obiettivo: conversione massiccia da milioni di utenti. Accesso facile, trial zero attrito." data-en="30 days free for gamers and freelancers. Goal: massive conversion from millions of users. Easy access, friction-free trial.">30 giorni gratis per gamers e freelancers. Obiettivo: conversione massiccia da milioni di utenti. Accesso facile, trial zero attrito.</p>
                 </div>
-
-                <div class="highlight" style="margin-top: 50px;">
-                    <div class="highlight-text">
-                        <h5>Margini impossibili per hardware</h5>
-                        <p>Nexus Lens è puro software che usa sensori esistenti (webcam, microfono). Zero costi di produzione. Ogni euro di ricavo scende direttamente al profitto. 95%-99% di margine è il valore reale della proprietà intellettuale.</p>
-                    </div>
+                <div class="card">
+                    <h4 data-it="🏢 Enterprise (SaaS)" data-en="🏢 Enterprise (SaaS)">🏢 Enterprise (SaaS)</h4>
+                    <p data-it="Pilot 30 giorni per dimostrare ROI diretto: riduzione malattie, boost produttività. Managers vedono i numeri. Poi scale-up aziendale." data-en="30-day pilot to demonstrate direct ROI: reduced illness, productivity boost. Managers see the numbers. Then company scale-up.">Pilot 30 giorni per dimostrare ROI diretto: riduzione malattie, boost produttività. Managers vedono i numeri. Poi scale-up aziendale.</p>
                 </div>
-            </section>
-
-            <section class="section">
-                <h2>Mission & Vision</h2>
-                <div class="mission-vision">
-                    <div class="mv-card">
-                        <h3>🎯 Mission</h3>
-                        <p>Diamo occhi alla tecnologia per proteggere la mente umana dal burnout digitale. Il computer diventa consapevole, adattivo, umano.</p>
-                    </div>
-                    <div class="mv-card">
-                        <h3>✨ Vision</h3>
-                        <p>Un futuro dove la tecnologia smette di essere un limite per la salute e diventa il custode della performance e del benessere umano.</p>
-                    </div>
+                <div class="card">
+                    <h4 data-it="🔌 OEM Licensing" data-en="🔌 OEM Licensing">🔌 OEM Licensing</h4>
+                    <p data-it="Pre-installato su nuovi PC MSI, ASUS. Attivazione istantanea. Distribuzione globale automatica. Crescita esponenziale dal day one." data-en="Pre-installed on new MSI, ASUS PCs. Instant activation. Automatic global distribution. Exponential growth from day one.">Pre-installato su nuovi PC MSI, ASUS. Attivazione istantanea. Distribuzione globale automatica. Crescita esponenziale dal day one.</p>
                 </div>
-            </section>
-        </div>
+            </div>
+
+            <h3 data-it="Fase di implementazione" data-en="Implementation phase">Fase di implementazione</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4 data-it="Onboarding strategico" data-en="Strategic onboarding">Onboarding strategico</h4>
+                    <p data-it="Tutti e tre i canali iniziano con periodi di prova gratuiti (30 giorni). Zero barriere all'ingresso, massima conversione. L'utente sperimenta il valore prima di pagare." data-en="All three channels start with free trial periods (30 days). Zero entry barriers, maximum conversion. User experiences value before paying.">Tutti e tre i canali iniziano con periodi di prova gratuiti (30 giorni). Zero barriere all'ingresso, massima conversione. L'utente sperimenta il valore prima di pagare.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4 data-it="Validazione del mercato" data-en="Market validation">Validazione del mercato</h4>
+                    <p data-it="Raccogliamo dati di utilizzo reale. Quali feature converte? Quale segmento resta? Dove è il valore percepito? Iterazione rapida basata su feedback." data-en="We collect real usage data. Which features convert? Which segment stays? Where is perceived value? Fast iteration based on feedback.">Raccogliamo dati di utilizzo reale. Quali feature converte? Quale segmento resta? Dove è il valore percepito? Iterazione rapida basata su feedback.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4 data-it="Scale-up differenziata" data-en="Differentiated scale-up">Scale-up differenziata</h4>
+                    <p data-it="Consumer cresce per viral loop e word-of-mouth. Enterprise per case study e ROI. OEM per partnership con giganti hardware. Tre strategie parallele, uno prodotto." data-en="Consumer grows through viral loop and word-of-mouth. Enterprise through case studies and ROI. OEM through partnerships with hardware giants. Three parallel strategies, one product.">Consumer cresce per viral loop e word-of-mouth. Enterprise per case study e ROI. OEM per partnership con giganti hardware. Tre strategie parallele, uno prodotto.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap">
+            <h2 data-it="Roadmap finanziaria" data-en="Financial roadmap">Roadmap finanziaria</h2>
+            <p class="subtitle" data-it="Puro software con margini massimali. Crescita esponenziale da Day 1." data-en="Pure software with maximum margins. Exponential growth from Day 1.">Puro software con margini massimali. Crescita esponenziale da Day 1.</p>
+
+            <div class="roadmap-grid">
+                <div class="roadmap-card">
+                    <div class="roadmap-year" data-it="Year 1" data-en="Year 1">Year 1</div>
+                    <div class="roadmap-value">€24.500</div>
+                    <div class="roadmap-desc" data-it="Validation in market" data-en="Validation in market">Validation in market</div>
+                </div>
+                <div class="roadmap-card">
+                    <div class="roadmap-year" data-it="Year 2" data-en="Year 2">Year 2</div>
+                    <div class="roadmap-value">€196.000</div>
+                    <div class="roadmap-desc" data-it="4.000 units sold" data-en="4.000 units sold">4.000 units sold</div>
+                </div>
+                <div class="roadmap-card">
+                    <div class="roadmap-year" data-it="Year 3" data-en="Year 3">Year 3</div>
+                    <div class="roadmap-value">€980.000+</div>
+                    <div class="roadmap-desc" data-it="20.000 units, pure profit" data-en="20.000 units, pure profit">20.000 units, pure profit</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h5 data-it="Margini impossibili per hardware" data-en="Impossible margins for hardware">Margini impossibili per hardware</h5>
+                <p data-it="Nexus Lens è puro software che usa sensori esistenti (webcam, microfono). Zero costi di produzione. Ogni euro di ricavo scende direttamente al profitto. 95%-99% di margine è il valore reale della proprietà intellettuale." data-en="Nexus Lens is pure software that uses existing sensors (webcam, microphone). Zero production costs. Every euro of revenue goes straight to profit. 95%-99% margin is the real value of intellectual property.">Nexus Lens è puro software che usa sensori esistenti (webcam, microfono). Zero costi di produzione. Ogni euro di ricavo scende direttamente al profitto. 95%-99% di margine è il valore reale della proprietà intellettuale.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2 data-it="Mission & Vision" data-en="Mission & Vision">Mission & Vision</h2>
+            <div class="mv-grid">
+                <div class="mv-card">
+                    <h3 data-it="🎯 Mission" data-en="🎯 Mission">🎯 Mission</h3>
+                    <p data-it="Diamo occhi alla tecnologia per proteggere la mente umana dal burnout digitale. Il computer diventa consapevole, adattivo, umano." data-en="We give eyes to technology to protect the human mind from digital burnout. The computer becomes aware, adaptive, human.">Diamo occhi alla tecnologia per proteggere la mente umana dal burnout digitale. Il computer diventa consapevole, adattivo, umano.</p>
+                </div>
+                <div class="mv-card">
+                    <h3 data-it="✨ Vision" data-en="✨ Vision">✨ Vision</h3>
+                    <p data-it="Un futuro dove la tecnologia smette di essere un limite per la salute e diventa il custode della performance e del benessere umano." data-en="A future where technology stops being a limit to health and becomes the custodian of human performance and wellbeing.">Un futuro dove la tecnologia smette di essere un limite per la salute e diventa il custode della performance e del benessere umano.</p>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
-        <div class="container">
-            <p>© 2025 Nexus Lens • Team info_7 • Cognitive Middleware for Human-Aware Computing</p>
-        </div>
+        <p data-it="© 2025 Nexus Lens • Team info_7 • Cognitive Middleware for Human-Aware Computing" data-en="© 2025 Nexus Lens • Team info_7 • Cognitive Middleware for Human-Aware Computing">© 2025 Nexus Lens • Team info_7 • Cognitive Middleware for Human-Aware Computing</p>
     </footer>
 
     <script>
-        const translations = {
-            en: {
-                'logo': 'Nexus Lens',
-                'nav-problema': 'The problem',
-                'nav-tecnologia': 'Technology',
-                'nav-business': 'Business',
-                'nav-roadmap': 'Roadmap',
-                'hero-h1': 'Give eyes to technology',
-                'hero-subtitle': 'Nexus Lens is the cognitive middleware that makes computers aware of the user. Real-time biological adaptation.',
-                'problema-h2': 'The real problem',
-                'problema-card1-h3': '41% of workers',
-                'problema-card1-p': 'Suffer from chronic digital fatigue. Computers are incredibly powerful, but completely blind to who uses them. The crucial link between man and machine is missing.',
-                'problema-card2-h3': 'Digital burnout',
-                'problema-card2-p': 'Unsustainable pace, bright screens, invasive notifications. Technology executes commands without ever asking how the person giving them is doing. Result: chronic stress and lost productivity.',
-                'problema-h3': 'The solution: Cognitive Middleware',
-                'highlight-h5': 'A digital nervous system',
-                'highlight-p': 'Nexus Lens acts as a biological interface between the user and the machine. It reads vital signs in real time (heart rate, keyboard stress, eye fatigue) and automatically adjusts brightness, sounds and notifications. No longer the computer challenging the human, but the computer protecting it.',
-                'tecnologia-h2': 'How it works',
-                'tecnologia-subtitle': 'Three biological channels, zero invasive hardware. Just a webcam and mathematical algorithms.',
-                'tech1-h4': '❤️ Photoplethysmography (rPPG)',
-                'tech1-p': 'We capture heart rate from micro-color variations in the skin. The algorithm discards ambient light and camera noise to extract the pure pulse wave. Live heart rate via webcam.',
-                'tech2-h4': '⌨️ Typing stress',
-                'tech2-p': 'We measure the intensity and speed of your keystrokes. Violent hits on the keyboard and rapid latency sum up a panic index. Reveals the moment stress rises, before it becomes visible.',
-                'tech3-h4': '👁️ Eye fatigue (EAR)',
-                'tech3-p': '468 facial landmarks map eyelid opening. The Eye Aspect Ratio calculates height vs width of the eye. Microsleep and fatigue detected in milliseconds. Alert before collapse.',
-                'stat1-label': 'Cost per unit',
-                'stat2-label': 'Profit margin',
-                'stat3-label': 'Revenue channels',
-                'stat4-label': 'Invasive hardware',
-                'business-h2': 'Business model',
-                'business-subtitle': 'Three growth channels, one for each market segment.',
-                'business1-h4': '🎮 Consumer (Freemium)',
-                'business1-p': '30 days free for gamers and freelancers. Goal: massive conversion from millions of users. Easy access, friction-free trial.',
-                'business2-h4': '🏢 Enterprise (SaaS)',
-                'business2-p': '30-day pilot to demonstrate direct ROI: reduced illness, productivity boost. Managers see the numbers. Then company scale-up.',
-                'business3-h4': '🔌 OEM Licensing',
-                'business3-p': 'Pre-installed on new MSI, ASUS PCs. Instant activation. Automatic global distribution. Exponential growth from day one.',
-                'timeline-h3': 'Implementation phase',
-                'timeline1-h4': 'Strategic onboarding',
-                'timeline1-p': 'All three channels start with free trial periods (30 days). Zero entry barriers, maximum conversion. User experiences value before paying.',
-                'timeline2-h4': 'Market validation',
-                'timeline2-p': 'We collect real usage data. Which features convert? Which segment stays? Where is perceived value? Fast iteration based on feedback.',
-                'timeline3-h4': 'Differentiated scale-up',
-                'timeline3-p': 'Consumer grows through viral loop and word-of-mouth. Enterprise through case studies and ROI. OEM through partnerships with hardware giants. Three parallel strategies, one product.',
-                'roadmap-h2': 'Financial roadmap',
-                'roadmap-subtitle': 'Pure software with maximum margins. Exponential growth from Day 1.',
-                'roadmap1-year': 'Year 1',
-                'roadmap1-desc': 'Validation in market',
-                'roadmap2-year': 'Year 2',
-                'roadmap2-desc': '4.000 units sold',
-                'roadmap3-year': 'Year 3',
-                'roadmap3-desc': '20.000 units, pure profit',
-                'roadmap-highlight-h5': 'Impossible margins for hardware',
-                'roadmap-highlight-p': 'Nexus Lens is pure software that uses existing sensors (webcam, microphone). Zero production costs. Every euro of revenue goes straight to profit. 95%-99% margin is the real value of intellectual property.',
-                'mv-h2': 'Mission & Vision',
-                'mission-h3': '🎯 Mission',
-                'mission-p': 'We give eyes to technology to protect the human mind from digital burnout. The computer becomes aware, adaptive, human.',
-                'vision-h3': '✨ Vision',
-                'vision-p': 'A future where technology stops being a limit to health and becomes the custodian of human performance and wellbeing.',
-                'footer': '© 2025 Nexus Lens • Team info_7 • Cognitive Middleware for Human-Aware Computing'
-            },
-            it: {
-                'logo': 'Nexus Lens',
-                'nav-problema': 'Il problema',
-                'nav-tecnologia': 'Tecnologia',
-                'nav-business': 'Business',
-                'nav-roadmap': 'Roadmap',
-                'hero-h1': 'Dai occhi alla tecnologia',
-                'hero-subtitle': 'Nexus Lens è il cognitive middleware che rende i computer consapevoli dell\'utente. Adattamento biologico in tempo reale.',
-                'problema-h2': 'Il problema reale',
-                'problema-card1-h3': '41% dei lavoratori',
-                'problema-card1-p': 'Soffrono di digital fatigue cronica. I computer sono potentissimi, ma completamente ciechi di fronte a chi li usa. Manca il collegamento cruciale tra uomo e macchina.',
-                'problema-card2-h3': 'Burnout digitale',
-                'problema-card2-p': 'Ritmi insostenibili, schermi luminosi, notifiche invasive. La tecnologia esegue comandi senza mai chiedersi come sta chi le impartisce. Risultato: stress cronico e perdita di produttività.',
-                'problema-h3': 'La soluzione: Cognitive Middleware',
-                'highlight-h5': 'Un sistema nervoso digitale',
-                'highlight-p': 'Nexus Lens agisce come interfaccia biologica tra l\'utente e la macchina. Legge i segnali vitali in tempo reale (frequenza cardiaca, stress da tastiera, affaticamento oculare) e adatta automaticamente luminosità, suoni e notifiche. Non più il computer che sfida l\'uomo, ma il computer che lo protegge.',
-                'tecnologia-h2': 'Come funziona',
-                'tecnologia-subtitle': 'Tre canali biologici, zero hardware invasivo. Soltanto una webcam e algoritmi matematici.',
-                'tech1-h4': '❤️ Fotopletismografia (rPPG)',
-                'tech1-p': 'Catturiamo il battito cardiaco dalle micro-variazioni cromatiche della pelle. L\'algoritmo scarta la luce ambientale e il rumore della camera per estrarre l\'onda pulsatile pura. Frequenza di battito live via webcam.',
-                'tech2-h4': '⌨️ Stress da digitazione',
-                'tech2-p': 'Misuriamo l\'intensità e la velocità dei vostri tasti. Colpi violenti sulla tastiera e latenza rapida sommano un indice di panico. Rivela il momento in cui lo stress sale, prima che diventi visibile.',
-                'tech3-h4': '👁️ Fatica oculare (EAR)',
-                'tech3-p': '468 landmark facciali mappano l\'apertura palpebrale. L\'Eye Aspect Ratio calcola altezza vs larghezza dell\'occhio. Microsleep e affaticamento rilevati in millisecondi. Allerta prima del collasso.',
-                'stat1-label': 'Costo per unità',
-                'stat2-label': 'Margine di profitto',
-                'stat3-label': 'Canali di revenue',
-                'stat4-label': 'Hardware invasivo',
-                'business-h2': 'Business model',
-                'business-subtitle': 'Tre canali di crescita, uno per ogni segmento di mercato.',
-                'business1-h4': '🎮 Consumer (Freemium)',
-                'business1-p': '30 giorni gratis per gamers e freelancers. Obiettivo: conversione massiccia da milioni di utenti. Accesso facile, trial zero attrito.',
-                'business2-h4': '🏢 Enterprise (SaaS)',
-                'business2-p': 'Pilot 30 giorni per dimostrare ROI diretto: riduzione malattie, boost produttività. Managers vedono i numeri. Poi scale-up aziendale.',
-                'business3-h4': '🔌 OEM Licensing',
-                'business3-p': 'Pre-installato su nuovi PC MSI, ASUS. Attivazione istantanea. Distribuzione globale automatica. Crescita esponenziale dal day one.',
-                'timeline-h3': 'Fase di implementazione',
-                'timeline1-h4': 'Onboarding strategico',
-                'timeline1-p': 'Tutti e tre i canali iniziano con periodi di prova gratuiti (30 giorni). Zero barriere all\'ingresso, massima conversione. L\'utente sperimenta il valore prima di pagare.',
-                'timeline2-h4': 'Validazione del mercato',
-                'timeline2-p': 'Raccogliamo dati di utilizzo reale. Quali feature converte? Quale segmento resta? Dove è il valore percepito? Iterazione rapida basata su feedback.',
-                'timeline3-h4': 'Scale-up differenziata',
-                'timeline3-p': 'Consumer cresce per viral loop e word-of-mouth. Enterprise per case study e ROI. OEM per partnership con giganti hardware. Tre strategie parallele, uno prodotto.',
-                'roadmap-h2': 'Roadmap finanziaria',
-                'roadmap-subtitle': 'Puro software con margini massimali. Crescita esponenziale da Day 1.',
-                'roadmap1-year': 'Year 1',
-                'roadmap1-desc': 'Validation in market',
-                'roadmap2-year': 'Year 2',
-                'roadmap2-desc': '4.000 units sold',
-                'roadmap3-year': 'Year 3',
-                'roadmap3-desc': '20.000 units, pure profit',
-                'roadmap-highlight-h5': 'Margini impossibili per hardware',
-                'roadmap-highlight-p': 'Nexus Lens è puro software che usa sensori esistenti (webcam, microfono). Zero costi di produzione. Ogni euro di ricavo scende direttamente al profitto. 95%-99% di margine è il valore reale della proprietà intellettuale.',
-                'mv-h2': 'Mission & Vision',
-                'mission-h3': '🎯 Mission',
-                'mission-p': 'Diamo occhi alla tecnologia per proteggere la mente umana dal burnout digitale. Il computer diventa consapevole, adattivo, umano.',
-                'vision-h3': '✨ Vision',
-                'vision-p': 'Un futuro dove la tecnologia smette di essere un limite per la salute e diventa il custode della performance e del benessere umano.',
-                'footer': '© 2025 Nexus Lens • Team info_7 • Cognitive Middleware for Human-Aware Computing'
-            }
-        };
-
         const langSelector = document.getElementById('langSelector');
         let currentLang = 'it';
 
@@ -776,109 +573,11 @@
             localStorage.setItem('nexusLensLang', lang);
 
             document.querySelectorAll('[data-it]').forEach(el => {
-                el.textContent = translations[lang][el.id] || translations[lang]['nav-' + el.getAttribute('href')?.substring(1)] || el.getAttribute('data-' + lang);
+                const text = el.getAttribute(`data-${lang}`);
+                if (text) {
+                    el.textContent = text;
+                }
             });
-
-            Object.keys(translations[lang]).forEach(key => {
-                const elements = document.querySelectorAll('[data-key="' + key + '"]');
-                elements.forEach(el => {
-                    el.textContent = translations[lang][key];
-                });
-            });
-
-            const heroH1 = document.querySelector('.hero h1');
-            if (heroH1) heroH1.textContent = translations[lang]['hero-h1'];
-
-            const heroSubtitle = document.querySelector('.hero-subtitle');
-            if (heroSubtitle) heroSubtitle.textContent = translations[lang]['hero-subtitle'];
-
-            const problemaH2 = document.querySelector('#problema h2');
-            if (problemaH2) problemaH2.textContent = translations[lang]['problema-h2'];
-
-            const cards = document.querySelectorAll('.card');
-            if (cards[0]) {
-                cards[0].querySelector('h3').textContent = translations[lang]['problema-card1-h3'];
-                cards[0].querySelector('p').textContent = translations[lang]['problema-card1-p'];
-            }
-            if (cards[1]) {
-                cards[1].querySelector('h3').textContent = translations[lang]['problema-card2-h3'];
-                cards[1].querySelector('p').textContent = translations[lang]['problema-card2-p'];
-            }
-
-            const problemaH3 = document.querySelector('#problema h3');
-            if (problemaH3) problemaH3.textContent = translations[lang]['problema-h3'];
-
-            const highlight = document.querySelector('.highlight-text h5');
-            if (highlight) highlight.textContent = translations[lang]['highlight-h5'];
-
-            const highlightP = document.querySelector('.highlight-text p');
-            if (highlightP) highlightP.textContent = translations[lang]['highlight-p'];
-
-            const tecH2 = document.querySelector('#tecnologia h2');
-            if (tecH2) tecH2.textContent = translations[lang]['tecnologia-h2'];
-
-            const tecSubtitle = document.querySelector('#tecnologia ~ p');
-            if (tecSubtitle) tecSubtitle.textContent = translations[lang]['tecnologia-subtitle'];
-
-            const techItems = document.querySelectorAll('.tech-item');
-            techItems[0].querySelector('h4').textContent = translations[lang]['tech1-h4'];
-            techItems[0].querySelector('p').textContent = translations[lang]['tech1-p'];
-            techItems[1].querySelector('h4').textContent = translations[lang]['tech2-h4'];
-            techItems[1].querySelector('p').textContent = translations[lang]['tech2-p'];
-            techItems[2].querySelector('h4').textContent = translations[lang]['tech3-h4'];
-            techItems[2].querySelector('p').textContent = translations[lang]['tech3-p'];
-
-            const stats = document.querySelectorAll('.stat-label');
-            stats[0].textContent = translations[lang]['stat1-label'];
-            stats[1].textContent = translations[lang]['stat2-label'];
-            stats[2].textContent = translations[lang]['stat3-label'];
-            stats[3].textContent = translations[lang]['stat4-label'];
-
-            const businessH2 = document.querySelector('#business h2');
-            if (businessH2) businessH2.textContent = translations[lang]['business-h2'];
-
-            const businessCards = document.querySelectorAll('.business-card');
-            businessCards[0].querySelector('h4').textContent = translations[lang]['business1-h4'];
-            businessCards[0].querySelector('p').textContent = translations[lang]['business1-p'];
-            businessCards[1].querySelector('h4').textContent = translations[lang]['business2-h4'];
-            businessCards[1].querySelector('p').textContent = translations[lang]['business2-p'];
-            businessCards[2].querySelector('h4').textContent = translations[lang]['business3-h4'];
-            businessCards[2].querySelector('p').textContent = translations[lang]['business3-p'];
-
-            const timelineItems = document.querySelectorAll('.timeline-item');
-            if (timelineItems[0]) {
-                timelineItems[0].querySelector('h4').textContent = translations[lang]['timeline1-h4'];
-                timelineItems[0].querySelector('p').textContent = translations[lang]['timeline1-p'];
-            }
-            if (timelineItems[1]) {
-                timelineItems[1].querySelector('h4').textContent = translations[lang]['timeline2-h4'];
-                timelineItems[1].querySelector('p').textContent = translations[lang]['timeline2-p'];
-            }
-            if (timelineItems[2]) {
-                timelineItems[2].querySelector('h4').textContent = translations[lang]['timeline3-h4'];
-                timelineItems[2].querySelector('p').textContent = translations[lang]['timeline3-p'];
-            }
-
-            const roadmapH2 = document.querySelector('#roadmap h2');
-            if (roadmapH2) roadmapH2.textContent = translations[lang]['roadmap-h2'];
-
-            const roadmapCards = document.querySelectorAll('.roadmap-card');
-            roadmapCards[0].querySelector('.roadmap-year').textContent = translations[lang]['roadmap1-year'];
-            roadmapCards[0].querySelector('.roadmap-desc').textContent = translations[lang]['roadmap1-desc'];
-            roadmapCards[1].querySelector('.roadmap-year').textContent = translations[lang]['roadmap2-year'];
-            roadmapCards[1].querySelector('.roadmap-desc').textContent = translations[lang]['roadmap2-desc'];
-            roadmapCards[2].querySelector('.roadmap-year').textContent = translations[lang]['roadmap3-year'];
-            roadmapCards[2].querySelector('.roadmap-desc').textContent = translations[lang]['roadmap3-desc'];
-
-            const mvH2 = document.querySelector('h2:not(#problema h2):not(#tecnologia h2):not(#business h2):not(#roadmap h2)');
-            const mvCards = document.querySelectorAll('.mv-card');
-            mvCards[0].querySelector('h3').textContent = translations[lang]['mission-h3'];
-            mvCards[0].querySelector('p').textContent = translations[lang]['mission-p'];
-            mvCards[1].querySelector('h3').textContent = translations[lang]['vision-h3'];
-            mvCards[1].querySelector('p').textContent = translations[lang]['vision-p'];
-
-            const footer = document.querySelector('footer p');
-            if (footer) footer.textContent = translations[lang]['footer'];
         }
 
         langSelector.addEventListener('change', (e) => {
@@ -889,3 +588,5 @@
         langSelector.value = savedLang;
         setLanguage(savedLang);
     </script>
+</body>
+</html>
